@@ -3,7 +3,7 @@
 # 2. compare each permutation with each other, to see which is the smallest value bigger than num
 
 
-#moved these three lines here from main, but still getting UnboundLocalError
+#moved these two lines here from main, but still getting UnboundLocalError
 global MIN_NUM
 MIN_NUM = 9999
 
