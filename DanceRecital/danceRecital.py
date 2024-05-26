@@ -13,27 +13,33 @@ def getQuickChanges(routines):
         r1 = routines[i]
         r2 = routines[i+1]
         quickChangesTotal += compareRoutines(r1, r2)
+
     return quickChangesTotal
 
 
-def permutation(changes, routines, i = 0):
+def permutation(currMin, changes, routines, i = 0):
     if i == len(routines):
-        # print(routines)
-        changes.append(getQuickChanges(routines))
+        qc = getQuickChanges(routines)
+        currMin = qc
+        print(qc, routines)
+        changes.append(qc)
     else:
         for j in range(i, len(routines)):
             routines[i], routines[j] = routines[j], routines[i]
-            permutation(changes, routines, i+1)
+            if getQuickChanges(routines) <= currMin:
+                permutation(currMin, changes, routines, i+1) 
             routines[j], routines[i] = routines[i], routines[j]
+
 
 def main():
     r = int(input())
     routines = []
     for i in range(r):
         routines.append(input())
-
+    
+    currMin = getQuickChanges(routines)
     changes = []
-    permutation(changes, routines)
-
+    count = 0
+    permutation(currMin, changes, routines)
     print(min(changes))   
 main()
