@@ -78,6 +78,8 @@ def main():
 
             if not foundSolution:
                 print("You all need therapy.")
+
+            foundSolution = False
         except EOFError:
             break
 
