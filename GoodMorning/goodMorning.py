@@ -23,7 +23,7 @@ keyValidNeighbors = {
     '2': ['2','3','5','6','8','9','0'],
     '3': ['3','6','9'],
     '4': ['4','5','6','7','8','9','0'],
-    '5': ['5','6','7','8','9','0'],
+    '5': ['5','6','8','9','0'],
     '6': ['6','9'],
     '7': ['7','8','9','0'],
     '8': ['8','9','0'],
@@ -104,6 +104,7 @@ def main():
     global DIFF
     t = int(input())
     visited = [False]*10
+    final = []
     for i in range(t):
         DIFF = 99999
         #convert to int...
@@ -113,7 +114,14 @@ def main():
         targetTokens = [c for c in targetStr]
         # print(k)
         res = search(int(target), targetTokens)
-        print(res)
+        final.append(res)
+        # print(res)
+
+    for i in range(len(final)):
+        #submission
+        print(final[i])
+        #uncomment line below for testing
+        #print(i+1, ' - ', final[i])
 
 
 
