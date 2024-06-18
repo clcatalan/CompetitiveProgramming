@@ -72,15 +72,19 @@ def search(target, targetTokens):
     for i in range(len(targetTokens)):
         t = targetTokens[i]
         if i > 0:
+            #if curr and prev are valid neighbors (below, or right, or below-right), then append curr to res
             if isValidNeighbor(res[i-1], t):
                 #print('append')
                 res.append(t)
                 temp.append(t)
+            #if not, search for valid neighbors
             else:
                 #print('search for others')
+                #get all valid neighbors of last typed digit
                 neighbors = keyValidNeighbors[res[i-1]]
                 temp.append(neighbors[0])
                 res.append(neighbors[0])
+                #go through every one of them and compare their differences with the target num, the smallest one will be added to the result
                 for n in neighbors:
                     temp[i] = n
                     tempInt = int("".join(temp))
@@ -89,6 +93,7 @@ def search(target, targetTokens):
                         res[i] = n
 
         else:
+            #first token always exists so push it to the res
             #print('append first')
             res.append(t)
             temp.append(t)
@@ -101,7 +106,9 @@ def main():
     visited = [False]*10
     for i in range(t):
         DIFF = 99999
+        #convert to int...
         target = int(input())
+        #then back to str to remove trailing zeros (081 input will register as 81)
         targetStr = str(target)
         targetTokens = [c for c in targetStr]
         # print(k)
